@@ -35,7 +35,7 @@ class _MainAppState extends State<MainApp> {
           ],
         ),
       ),
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
     );
   }
 }
