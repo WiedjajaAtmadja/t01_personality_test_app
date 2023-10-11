@@ -13,9 +13,18 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   var questionIndex = 0;
+  var questions = [
+    'When you go somewhere for the day, would you rather',
+    'If you were a teacher, would you rather teach',
+    'Are you usually',
+    'Do you more often let',
+  ];
 
   void chooseAnswer() {
-    questionIndex++;
+    setState(() {
+      questionIndex++;
+    });
+    // questionIndex++;
     print('QuestionIndex: $questionIndex');
   }
 
@@ -27,7 +36,7 @@ class _MainAppState extends State<MainApp> {
             title: const Center(child: Text("Myers-Briggs Type Indicator"))),
         body: Column(
           children: [
-            const Text('The Question'),
+            Text(questions[questionIndex]),
             ElevatedButton(
                 onPressed: chooseAnswer, child: const Text('Answer 1')),
             ElevatedButton(
