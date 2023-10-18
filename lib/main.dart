@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'question.dart';
 
 void main() {
   runApp(MainApp());
@@ -23,6 +24,9 @@ class _MainAppState extends State<MainApp> {
   void chooseAnswer() {
     setState(() {
       questionIndex++;
+      if (questionIndex >= questions.length) {
+        questionIndex = 0;
+      }
     });
     // questionIndex++;
     print('QuestionIndex: $questionIndex');
@@ -36,7 +40,7 @@ class _MainAppState extends State<MainApp> {
             title: const Center(child: Text("Myers-Briggs Type Indicator"))),
         body: Column(
           children: [
-            Text(questions[questionIndex]),
+            Question(questions[questionIndex]),
             ElevatedButton(
                 onPressed: chooseAnswer, child: const Text('Answer 1')),
             ElevatedButton(
