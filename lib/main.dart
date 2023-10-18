@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
-import 'answer.dart';
+import 'test.dart';
+import 'result.dart';
 
 void main() {
   runApp(MainApp());
@@ -61,12 +61,11 @@ class _MainAppState extends State<MainApp> {
         appBar: AppBar(
             title: const Center(child: Text("Myers-Briggs Type Indicator"))),
         body: (questionIndex < questions.length)
-            ? Column(children: [
-                Question(questions[questionIndex]['questionText'] as String),
-                for (var ans in questions[questionIndex]['answerText']! as List)
-                  Answer(ans, chooseAnswer),
-              ])
-            : Center(child: Text("You have completed the test!")),
+            ? Test(
+                questions: questions,
+                questionIndex: questionIndex,
+                chooseAnswer: chooseAnswer)
+            : Result(),
       ),
       debugShowCheckedModeBanner: true,
     );
