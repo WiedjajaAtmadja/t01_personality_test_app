@@ -49,9 +49,6 @@ class _MainAppState extends State<MainApp> {
   void chooseAnswer() {
     setState(() {
       questionIndex++;
-      if (questionIndex >= questions.length) {
-        questionIndex = 0;
-      }
     });
     // questionIndex++;
     print('QuestionIndex: $questionIndex');
@@ -63,16 +60,13 @@ class _MainAppState extends State<MainApp> {
       home: Scaffold(
         appBar: AppBar(
             title: const Center(child: Text("Myers-Briggs Type Indicator"))),
-        body: Column(
-          children: [
-            Question(questions[questionIndex]['questionText'] as String),
-            // ...(questions[questionIndex]['answerText']! as List).map((ans) {
-            //   return Answer(ans, chooseAnswer);
-            // }).toList(),
-            for (var ans in questions[questionIndex]['answerText']! as List)
-              Answer(ans, chooseAnswer),
-          ],
-        ),
+        body: (questionIndex < questions.length)
+            ? Column(children: [
+                Question(questions[questionIndex]['questionText'] as String),
+                for (var ans in questions[questionIndex]['answerText']! as List)
+                  Answer(ans, chooseAnswer),
+              ])
+            : Center(child: Text("You have completed the test!")),
       ),
       debugShowCheckedModeBanner: true,
     );
