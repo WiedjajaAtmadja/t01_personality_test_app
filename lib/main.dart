@@ -15,11 +15,35 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   var questionIndex = 0;
+  // var questions = [
+  //   'When you go somewhere for the day, would you rather',
+  //   'If you were a teacher, would you rather teach',
+  //   'Are you usually',
+  //   'Do you more often let',
+  // ];
   var questions = [
-    'When you go somewhere for the day, would you rather',
-    'If you were a teacher, would you rather teach',
-    'Are you usually',
-    'Do you more often let',
+    {
+      'questionText': '1. When you go somewhere for the day, would you rather',
+      'answerText': ['Plan what you will do and when', 'Just go!'],
+    },
+    {
+      'questionText': '2. If you were a teacher, would you rather teach',
+      'answerText': [
+        'Facts-based courses',
+        'Courses involving opinion or theory'
+      ],
+    },
+    {
+      'questionText': '3. Are you usually',
+      'answerText': [
+        'A "good mixer" with groups of people',
+        'Rather quiet and reserved'
+      ],
+    },
+    {
+      'questionText': '4. Do you more often let',
+      'answerText': ['Your heart rule your head', 'Your head rule your heart'],
+    },
   ];
 
   void chooseAnswer() {
@@ -41,13 +65,12 @@ class _MainAppState extends State<MainApp> {
             title: const Center(child: Text("Myers-Briggs Type Indicator"))),
         body: Column(
           children: [
-            Question(questions[questionIndex]),
-            Answer('Answer 1', chooseAnswer),
-            Answer('Jawaban 2', chooseAnswer),
-            // ElevatedButton(
-            //     onPressed: chooseAnswer, child: const Text('Answer 1')),
-            // ElevatedButton(
-            //     onPressed: chooseAnswer, child: const Text('Answer 2')),
+            Question(questions[questionIndex]['questionText'] as String),
+            // ...(questions[questionIndex]['answerText']! as List).map((ans) {
+            //   return Answer(ans, chooseAnswer);
+            // }).toList(),
+            for (var ans in questions[questionIndex]['answerText']! as List)
+              Answer(ans, chooseAnswer),
           ],
         ),
       ),
